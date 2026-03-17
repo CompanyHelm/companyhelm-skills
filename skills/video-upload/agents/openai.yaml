@@ -1,0 +1,4 @@
+interface:
+  display_name: "Video Upload"
+  short_description: "Upload demo videos to Cloudflare Stream"
+  default_prompt: "Use $video-upload to upload a local demo recording and attach the Stream watch link to the target PR or task."
