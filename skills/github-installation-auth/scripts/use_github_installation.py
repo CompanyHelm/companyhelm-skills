@@ -11,7 +11,7 @@ from pathlib import Path
 from typing import Any
 
 
-DEFAULT_AGENT_CONFIG_PATH = Path.home() / ".config" / "companyhelm-agent-cli" / "config.json"
+DEFAULT_AGENT_CONFIG_PATH = Path.home() / ".config" / "companyhelm-agent" / "config.json"
 
 
 class AgentApiError(RuntimeError):
