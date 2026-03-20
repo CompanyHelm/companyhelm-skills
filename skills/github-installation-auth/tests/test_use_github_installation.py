@@ -20,6 +20,10 @@ def load_module():
 
 
 class GithubInstallationSkillScriptTest(unittest.TestCase):
+    def test_default_agent_config_path_uses_agent_directory(self):
+        module = load_module()
+        self.assertTrue(str(module.DEFAULT_AGENT_CONFIG_PATH).endswith(".config/companyhelm-agent/config.json"))
+
     def test_resolve_agent_config_reads_default_json_config(self):
         module = load_module()
         with tempfile.TemporaryDirectory() as temp_directory:
