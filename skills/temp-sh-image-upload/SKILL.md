@@ -1,6 +1,6 @@
 ---
 name: temp-sh-image-upload
-description: Upload a local image to temp.sh and print a shareable URL or markdown snippet for PR comments and descriptions.
+description: Upload a local image to temp.sh and print a shareable URL or markdown snippet for screenshots, docs, chat, and PRs.
 ---
 
 # temp.sh Image Upload
@@ -13,38 +13,19 @@ python3 scripts/upload_temp_sh.py /absolute/path/to/screenshot.png
 
 By default, the script prints the uploaded temp.sh URL.
 
-## Comment on a PR with a screenshot
+## Common use cases
 
-This mirrors the raw curl flow:
+- Attach a screenshot to a pull request description or comment.
+- Paste a temporary image URL into team chat or tickets.
+- Embed markdown into docs, notes, or issue reports.
 
-```bash
-url="$(python3 scripts/upload_temp_sh.py /absolute/path/to/screenshot.png)"
-gh pr comment "$PR_NUMBER" --body "![screenshot]($url)"
-```
-
-## Add a screenshot to a PR description
-
-```bash
-existing_body="$(gh pr view "$PR_NUMBER" --json body --jq .body)"
-markdown="$(python3 scripts/upload_temp_sh.py /absolute/path/to/screenshot.png --markdown --alt screenshot)"
-gh pr edit "$PR_NUMBER" --body "${existing_body}
-
-${markdown}"
-```
+The skill just uploads the file and returns a URL or markdown snippet so the caller can use it however they want.
 
 ## Print markdown directly
 
 ```bash
 python3 scripts/upload_temp_sh.py /absolute/path/to/screenshot.png --markdown --alt screenshot
 ```
-
-## Comment on a PR directly from the script
-
-```bash
-python3 scripts/upload_temp_sh.py /absolute/path/to/screenshot.png --comment-pr "$PR_NUMBER" --alt screenshot
-```
-
-If you are not running inside the target repository, add `--repo owner/name`.
 
 ## Structured output
 
@@ -56,4 +37,3 @@ python3 scripts/upload_temp_sh.py /absolute/path/to/screenshot.png --json --alt 
 
 - temp.sh links are public and temporary.
 - The script validates that the file looks like an image unless `--allow-non-image` is passed.
-- `gh` is only required when using `--comment-pr`.

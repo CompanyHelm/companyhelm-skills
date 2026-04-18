@@ -54,22 +54,12 @@ def build_markdown(url: str, alt: str) -> str:
     return f"![{alt}]({url})"
 
 
-def comment_on_pr(pr_number: str, body: str, repo: str | None) -> None:
-    command = ["gh", "pr", "comment", pr_number]
-    if repo:
-        command.extend(["--repo", repo])
-    command.extend(["--body", body])
-    run(command)
-
-
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Upload a local image to temp.sh.")
     parser.add_argument("file_path", nargs="?", help="Path to the image file.")
     parser.add_argument("--file-path", dest="file_path_flag", help="Path to the image file.")
     parser.add_argument("--alt", default="screenshot", help="Alt text used for markdown output.")
     parser.add_argument("--markdown", action="store_true", help="Print markdown instead of the raw URL.")
-    parser.add_argument("--comment-pr", help="PR number to comment on with the uploaded screenshot markdown.")
-    parser.add_argument("--repo", help="Optional owner/name repo for gh pr comment.")
     parser.add_argument("--allow-non-image", action="store_true", help="Allow uploading non-image files.")
     parser.add_argument("--json", action="store_true", help="Print structured JSON output.")
     args = parser.parse_args(argv)
@@ -86,18 +76,13 @@ def main(argv: list[str]) -> int:
     url = upload_file(file_path)
     markdown = build_markdown(url, args.alt)
 
-    if args.comment_pr:
-        comment_on_pr(args.comment_pr, markdown, args.repo)
-
     if args.json:
         print(json.dumps({
             "file_path": str(file_path),
             "url": url,
             "markdown": markdown,
-            "commented_pr": args.comment_pr,
-            "repo": args.repo,
         }, indent=2))
-    elif args.markdown or args.comment_pr:
+    elif args.markdown:
         print(markdown)
     else:
         print(url)

@@ -2,7 +2,6 @@ import importlib.util
 import tempfile
 import unittest
 from pathlib import Path
-from unittest.mock import patch
 
 
 SCRIPT_PATH = Path(__file__).resolve().parents[1] / "scripts" / "upload_temp_sh.py"
@@ -37,24 +36,6 @@ class TempShImageUploadSkillScriptTest(unittest.TestCase):
         self.assertEqual(
             module.build_markdown("https://temp.sh/example.png", "screenshot"),
             "![screenshot](https://temp.sh/example.png)",
-        )
-
-    def test_comment_on_pr_uses_gh_cli(self):
-        module = load_module()
-        with patch.object(module, "run") as run_mock:
-            module.comment_on_pr("123", "![shot](https://temp.sh/example.png)", "CompanyHelm/companyhelm")
-
-        run_mock.assert_called_once_with(
-            [
-                "gh",
-                "pr",
-                "comment",
-                "123",
-                "--repo",
-                "CompanyHelm/companyhelm",
-                "--body",
-                "![shot](https://temp.sh/example.png)",
-            ]
         )
 
 
