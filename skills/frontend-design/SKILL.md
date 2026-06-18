@@ -41,3 +41,10 @@ Interpret creatively and make unexpected choices that feel genuinely designed fo
 - Include font import/setup when you pick a font (e.g. Google Fonts / local)
 - Use CSS variables for theme tokens
 - Prefer 1–2 “hero moments” of motion over lots of tiny animations
+
+## User-facing data display
+- Do not expose internal IDs, UUIDs, database keys, opaque organization IDs, task IDs, workflow IDs, session IDs, or similar implementation
+  identifiers in primary user-facing UI unless the ID is directly actionable for the user.
+- Prefer human-readable names, titles, labels, slugs, statuses, dates, owners, and short descriptions that help users recognize the object.
+- When an internal ID is genuinely actionable, such as for support handoff, debugging, audit logs, API usage, or a copy/paste integration
+  workflow, show it intentionally: label it clearly, keep it visually secondary, and make it easy to copy.
