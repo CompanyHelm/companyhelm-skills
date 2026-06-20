@@ -42,6 +42,16 @@ Interpret creatively and make unexpected choices that feel genuinely designed fo
 - Use CSS variables for theme tokens
 - Prefer 1–2 “hero moments” of motion over lots of tiny animations
 
+## Information architecture and copy
+- Avoid repeating the same noun or title across adjacent hierarchy levels. If a tab, sidebar item, breadcrumb, or page title already names the area,
+  do not immediately follow it with another section heading or empty-state title that repeats the same name.
+- Each hierarchy level should add new meaning: use the navigation label for orientation, the page or section heading for the specific job to be done,
+  and helper copy for constraints, status, or next steps.
+- Audit visible text for duplication before finalizing UI: active nav label, page heading, card heading, empty-state headline, CTA, and tooltip should not
+  feel like repetitive copies of one another.
+- When the obvious heading repeats the nav label, replace it with context-specific copy that describes the user goal, object state, or next action.
+- Empty states should explain what is missing and what the user can do next instead of restating the container name.
+
 ## User-facing data display
 - Do not expose internal IDs, UUIDs, database keys, opaque organization IDs, task IDs, workflow IDs, session IDs, or similar implementation
   identifiers in primary user-facing UI unless the ID is directly actionable for the user.
