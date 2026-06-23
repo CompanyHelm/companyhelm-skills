@@ -43,6 +43,8 @@ Interpret creatively and make unexpected choices that feel genuinely designed fo
 - Prefer 1–2 “hero moments” of motion over lots of tiny animations
 
 ## Information architecture and copy
+- Breadcrumbs belong at the top of the content hierarchy. Put the breadcrumb trail in the app/page header or the first content row before page-specific actions, hero content, tabs, cards, or forms; do not bury breadcrumbs below CTAs or body copy.
+- Avoid duplicating titles across adjacent hierarchy levels. If the app shell/header, sidebar item, route title, or breadcrumb already says the page name, do not immediately repeat the same word as the largest page heading unless the heading adds meaningful context.
 - Avoid repeating the same noun or title across adjacent hierarchy levels. If a tab, sidebar item, breadcrumb, or page title already names the area,
   do not immediately follow it with another section heading or empty-state title that repeats the same name.
 - Each hierarchy level should add new meaning: use the navigation label for orientation, the page or section heading for the specific job to be done,
@@ -51,6 +53,12 @@ Interpret creatively and make unexpected choices that feel genuinely designed fo
   feel like repetitive copies of one another.
 - When the obvious heading repeats the nav label, replace it with context-specific copy that describes the user goal, object state, or next action.
 - Empty states should explain what is missing and what the user can do next instead of restating the container name.
+
+## Menus, selects, and popovers
+- Never ship browser-default, unstyled menus or selects in a polished app surface. Native controls are acceptable only when they are intentionally styled to match the design system and verified in the target browsers.
+- Prefer the product’s design-system menu/select/popover components over raw `<select>`, `<details>`, or ad-hoc floating panels.
+- Check menus and popovers in dark mode, at constrained/mobile widths, and near viewport edges. They must have deliberate background, border, radius, shadow/elevation, hover/focus states, selected states, keyboard behavior, and readable contrast.
+- Do not let popovers clip, overflow off-screen, hide behind modal boundaries, or look detached from the app theme.
 
 ## User-facing data display
 - Do not expose internal IDs, UUIDs, database keys, opaque organization IDs, task IDs, workflow IDs, session IDs, or similar implementation
